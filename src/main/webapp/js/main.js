@@ -23,13 +23,27 @@
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
+        
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
+    	$.ajax({
+    		type: 'GET',
+    		url: '/login',
+    		data: {
+    			username: $('username[name="username"]').val(),
+    			password: $('pass[name="pass"]').val(),
+    		},
+    		success: function(result) { // send to the main webpage
+    			alert('Correct User Login');
+    		},
+    		error: function(result) {
+    			alert('Invalid User Login');
+    		}
+    	})
 
         return check;
     });
