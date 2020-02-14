@@ -45,7 +45,7 @@ public class Home extends HttpServlet {
 		api_context = new GeoApiContext.Builder().apiKey(API_KEY).build();
 		
 		String lon = request.getParameter("Longitude");
-		String lat = request.getParameter("Lattitude");
+		String lat = request.getParameter("Latitude");
 		String search_radius = request.getParameter("radius");
 		
 		NearbySearchRequest search_req = PlacesApi.nearbySearchQuery(api_context,
