@@ -7,6 +7,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class LocationSearchServletInitializer extends SpringBootServletInitializer{
 
 	  protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-	         return application.sources(LocationSearchServletInitializer.class);
+	         return application.sources(LocationSearchApplication.class);
 	    }
 }

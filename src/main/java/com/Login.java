@@ -9,27 +9,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.text.View;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.JsonObject;
+
 import okhttp3.Request;
 
-@WebServlet(
-		name = "Login",
-		urlPatterns = {"/login"}
-		)
-public class Login extends HttpServlet {
-
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+@RestController
+@RequestMapping("/login")
+public class Login {
+	@RequestMapping(value="/authenticate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void authenticate(@RequestBody User tempUser, HttpServletResponse response) 
 			throws IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		if(username == "Username" && password == "Password") {
-			response.getWriter().print(true);
-			// TODO forward everything
-			RequestDispatcher view = request.getRequestDispatcher("../../Webapp/home.html");
+		// Call the firebase service to authenticate and encrypt etc.
+		if(tempUser.getUsername().equals("Username") && tempUser.getPassword().equals("Password")) {
 			try {
-				view.forward(request, response);
+				response.getWriter().print(true);
 			} catch(Throwable e) {
-				
+				System.out.println(e.toString());
 			}
 		} else {
 			response.sendError(1); // username and password mismatch
