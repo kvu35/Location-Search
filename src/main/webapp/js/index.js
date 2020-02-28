@@ -101,43 +101,25 @@
 //
 //})(jQuery);
 
-function startSession(sessionID) {
-	$.ajax({
-		type: 'GET',
-		url: "localhost:8080/User/" + sessionID + "/Home/",
-		data: JSON.stringify({"sessionID": sessionID}),
-		dataType: 'html',
-		timeout: 3000,
-		success: function(response) {
-		},
-		error: function(reponse) {
-			alert("Oh no, couldn't get you to your home page");
-		}
-	});
-}
-
 $(document).ready(function() {
 	$('#Login').click(function() {	
     	$.ajax({
     		type: 'POST',
     		url: '/login/authenticate',
     		contentType: 'application/json; charset=utf-8',
-    		dataType: 'json',
+    		dataType: 'text',
     		timeout: 3000,
     		data: JSON.stringify({
     			"username": $("#username").val(),
     			"password": $("#password").val(),
     		}),
     		success: function(response) {
-    			startSession(sessionID);
+    			alert(response);
+    			window.location = 'htmls/home.html';
     		},
     		error: function(response) {
-    			window.location = window.location.pathname;
+    			alert("Invalid user");
     		}
-    		/*
-    		statusCode: {
-    			404: 	
-    		}*/
     	})
 	});
 });

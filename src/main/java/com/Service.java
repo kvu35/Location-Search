@@ -69,7 +69,11 @@ public class Service {
 		});
 	}
 	
+	// Call the firebase service to authenticate and encrypt etcy
 	public boolean firebaseAuthenticate(User user) {
+		if(user.getUsername().equals("Username") && user.getPassword().equals("Password")) {
+			return true;
+		}
 		return false;
 	}
 }

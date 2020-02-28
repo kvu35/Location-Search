@@ -65,8 +65,9 @@ public class User {
 		locationSearch = new Service();
 	}
 
-	@RequestMapping(value="/{SessionID}/Home", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/{SessionID}/Search", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public static Gson enumerateLocations(@PathVariable String SessionID) {
+		System.out.println(SessionID);
 		return new Gson();
 	}
 }
