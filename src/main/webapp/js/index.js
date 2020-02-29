@@ -116,6 +116,7 @@ $(document).ready(function() {
     		success: function(response) {
     			alert(response);
     			window.location = 'htmls/home.html';
+    			sessionStorage.setItem('sessionID', response);
     		},
     		error: function(response) {
     			alert("Invalid user");

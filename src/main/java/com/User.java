@@ -2,6 +2,7 @@ package com;
 
 import java.awt.Frame;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +43,6 @@ public class User {
 	private String username;
 	private String password;
 	private String UserID;
-	private boolean authenticated;
 
 	public User() {
 		username = null;
@@ -56,7 +58,6 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -66,8 +67,13 @@ public class User {
 	}
 
 	@RequestMapping(value="/{SessionID}/Search", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public static Gson enumerateLocations(@PathVariable String SessionID) {
-		System.out.println(SessionID);
-		return new Gson();
+	public static void enumerateLocations(@PathVariable String SessionID, @RequestBody ServiceRequest request) {
+		System.out.printf("Session %s request for %s %s\n", SessionID, request.getCoordinates()[0], request.getCoordinates()[1]);
+		try {
+			Service.getLocation(request);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
 	}
 }
