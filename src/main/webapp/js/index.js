@@ -1,4 +1,4 @@
-//(function ($) {
+//$(document).ready(function() {
 //    "use strict";
 //
 //    /*==================================================================
@@ -20,7 +20,6 @@
 //    var input = $('.validate-input .input100');
 //
 //    $('.validate-form').on('submit',function(){
-//    	/*
 //        var check = true;
 //        
 //        for(var i=0; i<input.length; i++) {
@@ -28,24 +27,25 @@
 //                showValidate(input[i]);
 //                check=false;
 //            }
-//        }*/
+//        }
 //    	$.ajax({
-//    		type: 'GET',
-//    		url: '/login',
-//    		contentType: 'application/json',
-//    		data: {
-//    			'username': $('#username').val(),
-//    			'password': $('#password').val(),
-//    			'test': 'hello',
+//    		type: 'POST',
+//    		url: '/login/authenticate',
+//    		contentType: 'application/json; charset=utf-8',
+//    		dataType: 'text',
+//    		timeout: 3000,
+//    		data: JSON.stringify({
+//    			"username": $("#username").val(),
+//    			"password": $("#password").val(),
+//    		}),
+//    		success: function(response) {
+//    			window.location = 'htmls/home.html';
+//    			sessionStorage.setItem('sessionID', response);
 //    		},
-//    		success: function(result) { // send to the main webpage
-//    			alert('This is it');
-//    		},
-//    		error: function(result) {
-//    			alert('Invalid User Login');
+//    		error: function(response) {
+//    			console.log("Error trying to login");
 //    		}
 //    	})
-//
 //        return check;
 //    });
 //
@@ -97,12 +97,10 @@
 //        }
 //        
 //    });
-//
-//
-//})(jQuery);
-
+//});
 $(document).ready(function() {
-	$('#Login').click(function() {	
+	$('#Login').click(function() {
+		alert("called");
     	$.ajax({
     		type: 'POST',
     		url: '/login/authenticate',
@@ -114,12 +112,13 @@ $(document).ready(function() {
     			"password": $("#password").val(),
     		}),
     		success: function(response) {
-    			alert(response);
+    			alert("success");
     			window.location = 'htmls/home.html';
     			sessionStorage.setItem('sessionID', response);
     		},
-    		error: function(response) {
-    			alert("Invalid user");
+    		error: function(response, textStatus) {
+    			alert("failed");
+    			console.log(textStatus);
     		}
     	})
 	});

@@ -9,4 +9,11 @@
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
   </system-properties>
 
+	<!-- Include resource files -->
+	<resource-files>
+	    <include path="/**.json" />
+	    <include path="/**.xml" />
+	    <include path="/**.properties" />
+	</resource-files>
+
 </appengine-web-app>
