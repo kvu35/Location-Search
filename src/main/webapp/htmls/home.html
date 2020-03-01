@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="end">
+<head>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+ <link rel="stylesheet" type="text/css" href="../css/Login_Menu/home.css">
+</head>
+
 <body>
 
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
-
+<input type = "text" name = "latitude" placeholder="latitude">
+<input type = "text" name = "longitude" placeholder="longitude">
+<input type = "text" name = "radius" placeholder="radius">
 <button class="login100-form-btn" id="Search">Search</button>
 
+ <div id="mapid"></div>
+
+
+ <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../js/home.js"></script>
 </body>
