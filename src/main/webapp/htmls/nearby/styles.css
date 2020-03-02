@@ -165,9 +165,11 @@ button:hover {
 	left: 15px;
 	width: 100px;
 }
-#locate {
-    display: none;
+#radius {
+	top:300px;
+	left: 15px;
+	width: 100px;
 }
-#find-nearest {
+#locate {
     display: none;
 }

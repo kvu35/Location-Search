@@ -3,6 +3,8 @@ package com;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.google.appengine.repackaged.com.google.gson.GsonBuilder;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -19,11 +21,13 @@ public class AuthenticationServices {
 	public static boolean firebaseAuthenticate(User user) {
 		DatabaseReference reference = FirebaseDatabase.getInstance(firebaseContext).
 				getReference().child("users").child(user.getUsername());
+
 		// Attach a listener to read the data at our posts reference
 		reference.addListenerForSingleValueEvent(new ValueEventListener() {
 		  @Override
 		  public void onDataChange(DataSnapshot dataSnapshot) {
 		    System.out.printf("Found user %s %s", dataSnapshot.getKey(), dataSnapshot.getValue());
+		    //send to frontend here
 		  }
 		
 		  @Override
