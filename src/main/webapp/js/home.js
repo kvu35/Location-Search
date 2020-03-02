@@ -18,19 +18,19 @@ $(document).ready(function() {
     		type: 'POST',
     		url: '/User/' + sessionID + '/Search',
     		contentType: 'application/json',
-    		//dataType: 'text',
+    		dataType: 'json',
     		timeout: 3000,
     		data: JSON.stringify({
-//    			coordinates: ["33.7736219055","-84.4022200578"],
-//    			radius:"200",
-    			coordinates: [$("#latitude").val(),$("#longitude").val()],
-    			radius:$("#radius").val(),
-    			address: "123123",
+    			coordinates: ["33.7736219055","-84.4022200578"],
+    			radius:"200",
+    			//coordinates: [$("#latitude").val(), $("#longitude").val()],
+    			//radius:$("#radius").val(),
+    			//address: "123123",
     		}),
     		success: function(response) {
     			alert("get response");
     			console.log("we good");
-    			console.log(response);
+    			console.log(JSON.stringify(response));
     		},
     		error: function(response, textStatus) {
     			console.log("logging reponse");

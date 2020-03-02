@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Find Nearest Points in Leaflet</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <div id='map'></div>
+    <div id='ui'>
+        <button id='locate'>
+            Find my location
+        </button>
+        <button id='find-nearest'>
+            Find Nearest Stations
+        </button>
+		<input id='lat' type='text' placeholder='Lattitude'></input>
+		<input id='lon' type='text' placeholder='Longitude'></input>
+    </div>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+        <p id='status'>loading vehicle recharging station data</p>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script src="app2.js"></script>
+</body>
+
+</html>
