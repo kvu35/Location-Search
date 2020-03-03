@@ -2,7 +2,7 @@
  * 
  */
 $(document).ready(function() {
- 
+	var sessionID = sessionStorage.getItem('sessionID');
     var zoomLevel = 4,
         mapCenter = [38, -101];
     
@@ -10,6 +10,9 @@ $(document).ready(function() {
         center: mapCenter,
         zoom: zoomLevel
     };
+    
+    var currentPos;
+    var radius;
     
     var map = L.map('map', options);
     
@@ -28,26 +31,28 @@ $(document).ready(function() {
     $body.addClass('loaded');
     
     $locate.fadeIn().on('click', function(e) {
+    	var currentPos = [$("#lat").val(), $("#lon").val()];
+    	var searchRadius = Math.imul(parseInt($("#radius").val(), 10), 1000); // km to meters
         $body.removeClass('loaded');
-    	$status.html('finding your location'); 
+    	$status.html('finding your location').delay(3000); 
     	$.ajax({
     		type: 'POST',
-    		url: '/User/' + 0 + '/Search',
+    		url: '/User/' + sessionID + '/Search',
     		contentType: 'application/json',
     		dataType: 'json',
     		timeout: 3000,
     		data: JSON.stringify({
-    			coordinates: ["33.7736219055","-84.4022200578"],
-    			radius:"200",
-    			//coordinates: [$("#lat").val(), $("#lon").val()],
-    			//radius:$("#radius").val(),
+    			coordinates: currentPos,
+    			radius: searchRadius,
     			address: "123123",
     		}),
     		success: function(data) {
     			console.log(data);
     			jQuery.each(data.features, function() {
     				console.log(this.coordinates);
-    				var temp = new L.Marker(this.geometry.coordinates).addTo(map);
+    				var temp = new L.Marker(this.geometry.coordinates, {
+    					riseOnHover	: true
+    				}).addTo(map);
     			});
     			//POIs = L.geoJson(data, {
     			//	onEachFeature: function (feature, layer) {
@@ -62,7 +67,7 @@ $(document).ready(function() {
     			//		});
     			//	}
     			//}).addTo(map); 
-    			success(33.7736219055,-84.4022200578);
+    			success(currentPos, searchRadius);
     		},
     		error: function(textStatus) {	
     			$body.addClass('loaded');
@@ -71,20 +76,18 @@ $(document).ready(function() {
     	})
     });   
 
-    function success(lat, lon) {
-        $body.addClass('loaded');
-        //var currentPos = [position.coords.latitude,position.coords.longitude];
-        currentPos = [33.7736219055,-84.4022200578];
+    function success(currentPos, searchRadius) {
         zoomLevel = 14;
         map.setView(currentPos, zoomLevel);
         var myLocation = L.marker(currentPos)
                             .addTo(map)
                             .bindTooltip("you are here")
                             .openTooltip();
-        var circle = L.circle(currentPos, 70, {
-            color: 'blue',
-            fillColor: 'blue',
-            fillOpacity: 0.5
+        var circle = L.circle(currentPos, searchRadius, {
+            color: 'red',
+            fillColor: 'red',
+            fillOpacity: 0.3
         }).addTo(map);
+        $body.addClass('loaded');
     };
 })

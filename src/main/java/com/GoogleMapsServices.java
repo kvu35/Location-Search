@@ -1,5 +1,6 @@
 package com;
 
+import com.google.appengine.api.search.query.ExpressionParser.index_return;
 import com.google.appengine.repackaged.com.google.gson.GsonBuilder;
 import com.google.maps.GeoApiContext;
 import com.google.maps.NearbySearchRequest;
@@ -16,11 +17,12 @@ public class GoogleMapsServices {
 		// grab the API key and create a new context 
 		String lon = request.getCoordinates()[1];
 		String lat = request.getCoordinates()[0];
-		String search_radius = request.getRadius();
+		Integer search_radius = request.getRadius(); // in meters
 		
+		System.out.println(search_radius);
 		NearbySearchRequest search_req = PlacesApi.nearbySearchQuery(context,
 				new LatLng(Double.valueOf(lat), Double.valueOf(lon)));
-		search_req.radius(Integer.valueOf(search_radius));
+		search_req.radius(search_radius);
 
 		PlacesSearchResult[] placesSearchResults = search_req.await().results;
 		System.out.println(new GsonBuilder().create().toJson(placesSearchResults));	

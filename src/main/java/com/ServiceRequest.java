@@ -1,7 +1,7 @@
 package com;
 
 public class ServiceRequest {
-	private String radius;
+	private Integer radius;
 	private String address;
 	private String[] coordinates;
 	private static enum ServiceType {
@@ -16,7 +16,7 @@ public class ServiceRequest {
 		return coordinates;
 	}
 
-	public String getRadius() {
+	public Integer getRadius() {
 		return radius;
 	}
 }
