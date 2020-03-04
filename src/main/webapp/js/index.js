@@ -113,7 +113,7 @@ $(document).ready(function() {
     		}),
     		success: function(response) {
     			alert("success");
-    			window.location = 'htmls/home.html';
+    			window.location = 'htmls/nearby/index.html';
     			sessionStorage.setItem('sessionID', response);
     		},
     		error: function(response, textStatus) {
@@ -121,5 +121,10 @@ $(document).ready(function() {
     			console.log(textStatus);
     		}
     	})
+	});
+	
+	$('#Register').click(function() {
+		alert("register clicked");
+		window.location = 'htmls/register.html'
 	});
 });
