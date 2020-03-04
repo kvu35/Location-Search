@@ -152,23 +152,39 @@ input {
     color: black;
     z-index: 1100;
 }
+select {
+	position: absolute;
+    padding: .5em 1em;
+    background-color: #fff;
+    font-size: 1.2em;
+    border:0;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+    color: black;
+    z-index: 1100;
+}
 button:hover {
     cursor: pointer;
 }
 #lat {
-	top:100px;
+	top:70px;
 	left: 15px;
-	width: 100px;
+	width: 15%;
 }
 #lon {
-	top: 200px;
+	top: 120px;
 	left: 15px;
-	width: 100px;
+	width: 15%;
 }
 #radius {
-	top:300px;
+	top:170px;
 	left: 15px;
-	width: 100px;
+	width: 15%;
+}
+#locality-dropdown {
+	top:220px;
+	left: 15px;
+	width: 18%;
 }
 #locate {
     display: none;

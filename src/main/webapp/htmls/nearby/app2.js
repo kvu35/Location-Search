@@ -2,7 +2,8 @@
  * 
  */
 $(document).ready(function() {
-	var sessionID = sessionStorage.getItem('sessionID');
+	//var sessionID = sessionStorage.getItem('sessionID');
+	var sessionID = "123";
     var zoomLevel = 4,
         mapCenter = [38, -101];
     
@@ -27,7 +28,7 @@ $(document).ready(function() {
         $locate = $('#locate'),
         $findNearest = $('#find-nearest'),
         $status = $('#status');
-
+    
     $body.addClass('loaded');
     
     $locate.fadeIn().on('click', function(e) {
@@ -47,12 +48,12 @@ $(document).ready(function() {
     			address: "123123",
     		}),
     		success: function(data) {
-    			console.log(data);
+    			$('#locality-dropdown').empty().delay(3000);
     			jQuery.each(data.features, function() {
-    				console.log(this.coordinates);
     				var temp = new L.Marker(this.geometry.coordinates, {
     					riseOnHover	: true
     				}).addTo(map);
+    				$('#locality-dropdown').append($('<option></option>').attr('value', "Name").text(this.properties.name));
     			});
     			//POIs = L.geoJson(data, {
     			//	onEachFeature: function (feature, layer) {
@@ -71,7 +72,7 @@ $(document).ready(function() {
     		},
     		error: function(textStatus) {	
     			$body.addClass('loaded');
-    			alert(JSON.stringify(textStatus));
+    			alert("Please enter input!");
     		}
     	})
     });   
