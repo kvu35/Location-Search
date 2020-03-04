@@ -112,9 +112,11 @@ $(document).ready(function() {
     			"password": $("#password").val(),
     		}),
     		success: function(response) {
-    			alert("success");
-    			window.location = 'htmls/home.html';
-    			sessionStorage.setItem('sessionID', response);
+    			if (response["valid"].equals("true")) {
+        			alert("success");
+        			window.location = 'htmls/home.html';
+        			sessionStorage.setItem('sessionID', response);
+    			}
     		},
     		error: function(response, textStatus) {
     			alert("failed");
